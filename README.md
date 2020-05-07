@@ -1,6 +1,6 @@
 # ML para prever empréstimos
 Aplicação de Machine Learning para prever se um novo cliente de um banco vai pagar o empréstimo solicitado ou não.
-Para criar os modelos de ML foram analisados os dados do dataset `credit-data.csv`. Para o pré-processamento dos dados foram usadas as bibliotecas:
+Para criar os modelos de ML foram analisados os dados do dataset `credit-data.csv` com 2k registros. Para o pré-processamento dos dados foram usadas as bibliotecas:
   -	Pandas
   -	NumPy
   -	Scikit-learn
