@@ -42,5 +42,5 @@ A aplicação web faz a classificação do novo registro utilizando os 3 melhore
 
 ![APP](https://user-images.githubusercontent.com/44576048/81318184-3a738500-9064-11ea-9672-535f78a92c8a.jpeg)
 
-Disponível em: https://credit-predict.herokuapp.com/
+Disponível em: https://credit-predict.herokuapp.com/index
 
