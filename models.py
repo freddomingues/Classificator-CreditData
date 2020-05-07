@@ -30,16 +30,16 @@ for i in range(30):
     kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state = i)
     resultados1 = []
     for indice_treinamento, indice_teste in kfold.split(previsores, np.zeros(shape=(classe.shape[0], 1))):
-        classificador = GaussianNB()
+        #classificador = GaussianNB()
         #classificador = DecisionTreeClassifier()
         #classificador = LogisticRegression()
         #classificador = SVC(kernel = 'rbf', random_state = 1, C = 2.0)
         #classificador = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p = 2)
         #classificador = RandomForestClassifier(n_estimators=40, criterion='entropy', random_state=0)
-        #classificador = MLPClassifier(verbose = True, max_iter = 1000,
-                              #tol = 0.000010, solver='adam',
-                              #hidden_layer_sizes=(100), activation = 'relu',
-                              #batch_size=200, learning_rate_init=0.001)
+        classificador = MLPClassifier(verbose = True, max_iter = 1000,
+                              tol = 0.000010, solver='adam',
+                              hidden_layer_sizes=(100), activation = 'relu',
+                              batch_size=200, learning_rate_init=0.001)
         
         
         classificador.fit(previsores[indice_treinamento], classe[indice_treinamento])

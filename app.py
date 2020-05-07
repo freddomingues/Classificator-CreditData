@@ -15,15 +15,23 @@ svm = pickle.load(open('svm_model.sav', 'rb'))
 rna = pickle.load(open('rna_model.sav', 'rb'))
 random_forest = pickle.load(open('random_forest_model.sav', 'rb'))
 
-@app.route('/')
+@app.route('/index')
 def home():
     return render_template('index.html')
 
-@app.route('/',methods=['POST'])
+@app.route('/indexRF')
+def rf():
+    return render_template('indexRF.html')
+
+@app.route('/indexRNA')
+def rna():
+    return render_template('indexRNA.html')
+
+@app.route('/predictSVM', methods=['POST','GET'])
 def predict_svm():
-    renda = request.form['inputRendaSVM']
-    idade = request.form['inputIdadeSVM']
-    credito = request.form['inputCreditoSVM']
+    renda = request.form.get('inputRendaSVM')
+    idade = request.form.get('inputIdadeSVM')
+    credito = request.form.get('inputCreditoSVM')
     novo_registro = [[renda, idade, credito]]
     novo_registro = np.asarray(novo_registro)
     novo_registro = novo_registro.reshape(-1, 1)
@@ -32,14 +40,13 @@ def predict_svm():
     
     resposta_svm = svm.predict(novo_registro)
     if resposta_svm == 0:
-        output = ' Vai pagar - empréstimo liberado'
+        return render_template('index.html', prediction_text_svm ='Resultado: Vai pagar')
     elif resposta_svm == 1:
-        output = ' Não vai pagar - empréstimo negado'
-    
-    return render_template('index.html', prediction_text_svm ='Resultado: {}'.format(output))
+        return render_template('index.html', prediction_text_svm ='Resultado: Não vai pagar')
+    else:
+        return render_template('index.html', prediction_text_svm ='Resultado: ')
 
-
-@app.route('/',methods=['POST'])
+@app.route('/predictRF',methods=['POST','GET'])
 def predict_rf():
     renda = request.form['inputRendaRF']
     idade = request.form['inputIdadeRF']
@@ -52,13 +59,14 @@ def predict_rf():
     
     resposta_rf = random_forest.predict(novo_registro)
     if resposta_rf == 0:
-        output = 'Vai pagar - empréstimo liberado'
+        return render_template('indexRF.html', prediction_text_rf ='Resultado: Vai pagar')
     elif resposta_rf == 1:
-        output = 'Não vai pagar - empréstimo negado'
+        return render_template('indexRF.html', prediction_text_rf ='Resultado: Não vai pagar')
+    else:
+        return render_template('indexRF.html', prediction_text_rf ='Resultado: ')
     
-    return render_template('index.html', prediction_text_rf ='Resultado: {}'.format(output))
 
-@app.route('/',methods=['POST'])
+@app.route('/predictRNA',methods=['POST','GET'])
 def predict_rna():
     renda = request.form['inputRendaRNA']
     idade = request.form['inputIdadeRNA']
@@ -71,11 +79,12 @@ def predict_rna():
     
     resposta_rna = rna.predict(novo_registro)
     if resposta_rna == 0:
-        output = 'Vai pagar - empréstimo liberado'
+        return render_template('indexRNA.html', prediction_text_rna ='Resultado: Vai pagar')
     elif resposta_rna == 1:
-        output = 'Não vai pagar - empréstimo negado'
+        return render_template('indexRNA.html', prediction_text_rna ='Resultado: Não vai pagar')
+    else:
+        return render_template('indexRNA.html', prediction_text_rna ='Resultado: ')
     
-    return render_template('index.html', prediction_text_rna ='Resultado: {}'.format(output))
 
 if __name__ == "__main__":
     app.run(debug=True)

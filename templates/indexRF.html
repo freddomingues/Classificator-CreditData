@@ -26,34 +26,34 @@
     </nav><br>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Prever com SVM</a></li>
-        <li class="page-item"><a class="page-link" href="indexRF">Prever com Random Forest</a></li>
+        <li class="page-item"><a class="page-link" href="index">Prever com SVM</a></li>
+        <li class="page-item"><a class="page-link" href="#">Prever com Random Forest</a></li>
         <li class="page-item"><a class="page-link" href="indexRNA">Prever com Redes Neurais</a></li>
       </ul>
     </nav>
 
-    <div class="card" style="margin-left: 15%; margin-right: 15%; margin-top: 30px; ">
-      <h5 class="card-header">Classificador com SVM</h5>
-      <div class="card-body">
-          <form id="formSVM" action="{{ url_for('predict_svm')}}" method="post">
-              <div class="form-group">
-                <label for="labelRenda">Renda Anual</label>
-                <input type="text" class="form-control" name="inputRendaSVM">
-              </div>
-              <div class="form-group">
-                <label for="labelIdade">Idade</label>
-                <input type="number" class="form-control" name="inputIdadeSVM">
-              </div>
-              <div class="form-group">
-                  <label for="labelCredito">Valor do crédito solicitado</label>
-                  <input type="number" class="form-control" name="inputCreditoSVM">
+    <div class="card" style="margin-left: 15%; margin-right: 15%; margin-top: 30px">
+        <h5 class="card-header">Classificador com Random Forest</h5>
+        <div class="card-body">
+            <form id="formRF" action="{{ url_for('predict_rf')}}" method="post">
+                <div class="form-group">
+                  <label for="labelRenda">Renda Anual</label>
+                  <input type="text" class="form-control" name="inputRendaRF">
                 </div>
-              <button type="submit" class="btn btn-primary" onclick="">Verificar</button><br>
-            </form>
-            {{ prediction_text_svm }}
-      </div>
+                <div class="form-group">
+                  <label for="labelIdade">Idade</label>
+                  <input type="number" class="form-control" name="inputIdadeRF">
+                </div>
+                <div class="form-group">
+                    <label for="labelCredito">Valor do crédito solicitado</label>
+                    <input type="number" class="form-control" name="inputCreditoRF">
+                </div>
+                <button type="submit" class="btn btn-primary">Verificar</button><br>
+                {{ prediction_text_rf }}           
+              </form>
+        </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
