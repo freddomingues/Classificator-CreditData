@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classificador de Crédito</title>
+    <title>Classificador de Empréstimo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar bg-primary justify-content-center">
-      <ul class="nav">
-        <li class="nav-item" >
-          <h1 style="color: white; width: 100%;">ML para prever empréstimo</h1>
-          <h6 style="color: white; margin-left: 25%;">
-            ®Made by <a href="https://freddomingues.github.io" target="_blank" style="color: white;">
-              <b>Frederico A. Domingues</b>
-            </a>
-          </h6>
-          <h6 style="color: white; margin-left: 35%;">
-            <a href="https://github.com/freddomingues/Classificator-CreditData" target="_blank" style="color: white;">
-              <b>Ver código no GitHub</b>
-            </a> 
-          </h6>
-        </li>
-      </ul>
-    </nav><br>
+  <nav class="navbar bg-primary justify-content-center">
+    <ul class="nav">
+      <li class="nav-item" >
+        <h2 style="color: white; width: 100%;">ML para prever empréstimo</h2>
+        <h6 style="color: white; width: 100%; margin-left: 21%;">
+          ®Made by <a href="https://freddomingues.github.io" target="_blank" style="color: white;">
+            <b><u>Frederico A. Domingues</u></b>
+          </a>
+        </h6>
+        <h6 style="color: white; margin-left: 30%;">
+          <a href="https://github.com/freddomingues/Classificator-CreditData" target="_blank" style="color: white;">
+            <b><u>Ver código no GitHub</u></b>
+          </a> 
+        </h6>
+      </li>
+    </ul>
+  </nav><br>
     <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
-        <li class="page-item"><a class="page-link" href="#">Prever com SVM</a></li>
-        <li class="page-item"><a class="page-link" href="indexRF">Prever com Random Forest</a></li>
-        <li class="page-item"><a class="page-link" href="indexRNA">Prever com Redes Neurais</a></li>
+        <li class="page-item"><a class="page-link">Prever com:</a></li>
+        <li class="page-item"><a class="page-link" href="#">SVM</a></li>
+        <li class="page-item"><a class="page-link" href="indexRF">Random Forest</a></li>
+        <li class="page-item"><a class="page-link" href="indexRNA">Redes Neurais</a></li>
       </ul>
     </nav>
 
@@ -45,7 +46,7 @@
                 <input type="number" class="form-control" name="inputIdadeSVM">
               </div>
               <div class="form-group">
-                  <label for="labelCredito">Valor do crédito solicitado</label>
+                  <label for="labelCredito">Valor do Empréstimo</label>
                   <input type="number" class="form-control" name="inputCreditoSVM">
                 </div>
               <button type="submit" class="btn btn-primary" onclick="">Verificar</button><br>

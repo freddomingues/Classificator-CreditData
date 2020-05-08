@@ -24,7 +24,7 @@ previsores[:, 1:4] = imputer.transform(previsores[:, 1:4])
 
 scaler = StandardScaler()
 previsores = scaler.fit_transform(previsores)
-
+'''
 resultados30 = []
 for i in range(30):
     kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state = i)
@@ -36,10 +36,10 @@ for i in range(30):
         #classificador = SVC(kernel = 'rbf', random_state = 1, C = 2.0)
         #classificador = KNeighborsClassifier(n_neighbors=5, metric='minkowski', p = 2)
         #classificador = RandomForestClassifier(n_estimators=40, criterion='entropy', random_state=0)
-        classificador = MLPClassifier(verbose = True, max_iter = 1000,
-                              tol = 0.000010, solver='adam',
-                              hidden_layer_sizes=(100), activation = 'relu',
-                              batch_size=200, learning_rate_init=0.001)
+        #classificador = MLPClassifier(verbose = True, max_iter = 1000,
+                              #tol = 0.000010, solver='adam',
+                              #hidden_layer_sizes=(100), activation = 'relu',
+                              #batch_size=200, learning_rate_init=0.001)
         
         
         classificador.fit(previsores[indice_treinamento], classe[indice_treinamento])
@@ -54,7 +54,7 @@ resultados30 = np.asarray(resultados30)
 resultados30.mean()
 for i in range(resultados30.size):
     print(str(resultados30[i]))
-
+'''
 classificadorSVM = SVC(kernel = 'rbf', C = 2.0)
 classificadorSVM.fit(previsores, classe)
 
@@ -70,5 +70,5 @@ classificadorMLP.fit(previsores, classe)
 import pickle
 pickle.dump(classificadorSVM, open('svm_model.sav', 'wb'))
 pickle.dump(classificadorRandomForest, open('random_forest_model.sav', 'wb'))
-pickle.dump(classificadorMLP, open('rna_model.sav', 'wb'))
+pickle.dump(classificadorMLP, open('mlp_model.sav', 'wb'))
 

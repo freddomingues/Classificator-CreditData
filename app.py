@@ -7,13 +7,15 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 from flask import Flask, request, render_template
 import pickle
+from sklearn.neural_network import multilayer_perceptron
+
 
 scaler = StandardScaler()
 
 app = Flask(__name__)
 svm = pickle.load(open('svm_model.sav', 'rb'))
-rna = pickle.load(open('rna_model.sav', 'rb'))
 random_forest = pickle.load(open('random_forest_model.sav', 'rb'))
+rna_model = pickle.load(open('mlp_model.sav','rb'))
 
 @app.route('/index')
 def home():
@@ -29,9 +31,9 @@ def rna():
 
 @app.route('/predictSVM', methods=['POST','GET'])
 def predict_svm():
-    renda = request.form.get('inputRendaSVM')
-    idade = request.form.get('inputIdadeSVM')
-    credito = request.form.get('inputCreditoSVM')
+    renda = request.form['inputRendaSVM']
+    idade = request.form['inputIdadeSVM']
+    credito = request.form['inputCreditoSVM']
     novo_registro = [[renda, idade, credito]]
     novo_registro = np.asarray(novo_registro)
     novo_registro = novo_registro.reshape(-1, 1)
@@ -77,7 +79,7 @@ def predict_rna():
     novo_registro = scaler.fit_transform(novo_registro)
     novo_registro = novo_registro.reshape(-1, 3)
     
-    resposta_rna = rna.predict(novo_registro)
+    resposta_rna = rna_model.predict(novo_registro)
     if resposta_rna == 0:
         return render_template('indexRNA.html', prediction_text_rna ='Resultado: Vai pagar')
     elif resposta_rna == 1:
